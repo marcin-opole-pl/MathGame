@@ -1,61 +1,73 @@
-﻿Console.WriteLine("Hello, what is Your name?");
+﻿var date = DateTime.UtcNow;
+string name = GetName();
 
-// Get user name
-var name = Console.ReadLine();
-var date = DateTime.UtcNow;
+Menu(name);
 
-Console.WriteLine("____________________________________________");
-Console.WriteLine($"Hello {name}, today is {date}. What mathematical game would you like to play?\n");
-Console.WriteLine($@"
-A: Addition
-S: Subtraction
-M: Multiplication
-D: Division
-Q: Quit the program");
-Console.WriteLine("\n ___________________________________________");
 
-//Get game choice
-var gameType = Console.ReadLine().ToLower().Trim();
-
-if (gameType == "a")
+string GetName()
 {
-    AdditionGame();
-}
-else if (gameType == "s")
-{
-    SubtractionGame();
-}
-else if (gameType == "m")
-{
-    MultiplicationGame();
-}
-else if (gameType == "d")
-{
-    DivisionGame();
-}
-else if (gameType == "q")
-{
-    Console.WriteLine("Goodbye");
-    Environment.Exit(1);
+    Console.WriteLine("Type your name please");
+    string name = Console.ReadLine();
+    return name;
 }
 
-void DivisionGame()
+void Menu(string name)
 {
-    Console.WriteLine("DIVIDE");
+    Console.WriteLine("------------------------------------");
+    Console.WriteLine($"Hello {name}, today is {date}.");
+    Console.WriteLine($@"What game would you like to play:
+A - addition
+S - subtraction
+M - multiplication
+D - division
+Q - quit the program");
+
+    Console.WriteLine("------------------------------------");
+
+    var selectedGame = Console.ReadLine().Trim().ToLower();
+
+    switch (selectedGame)
+    {
+        case ("a"):
+            AdditionGame("Addition selected");
+            break;
+        case ("s"):
+            SubstractionGame("Subtraction selected");
+            break;
+        case ("m"):
+            MultiplicationGame("Multiplication selected");
+            break;
+        case ("d"):
+            DivisionGame("Division selected");
+            break;
+        case ("q"):
+            Console.WriteLine("Goodbye");
+            Environment.Exit(0);
+            break;
+        default:
+            Console.WriteLine("Wrong input");
+            Environment.Exit(0);
+            break;
+    }
 }
 
-void MultiplicationGame()
-{
-    Console.WriteLine("MULTIPLY");
+void AdditionGame(string message)
+{ 
+    Console.WriteLine(message); 
 }
 
-void SubtractionGame()
+void SubstractionGame(string message)
 {
-    Console.WriteLine("SUB");
+    Console.WriteLine(message);
 }
 
-//Addition method
-void AdditionGame()
+void MultiplicationGame(string message)
 {
-    Console.WriteLine("ADD");
+    Console.WriteLine(message);
 }
+
+void DivisionGame(string message)
+{
+    Console.WriteLine(message);
+}
+
